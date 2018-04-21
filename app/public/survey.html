@@ -38,8 +38,8 @@
                                 <hr>
 
                                 <h3><strong>Question 1</strong></h3>
-                                <h4>question text goes here</h4>
-                                <select class="chosen-select" id="q1">
+                                <h4>I want to have lots of children.</h4>
+                                <select class="chosen-select" id="q01">
                                     <option value></option>
                                     <option value="1">1 (Strongly Agree)</option>
                                     <option value="2">2 (Agree)</option>
@@ -47,6 +47,106 @@
                                     <option value="4">4 (Disagree)</option>
                                     <option value="5">5 (Strongly Disagree)</option>
                                 </select>
+
+                                <h3><strong>Question 2</strong></h3>
+                                <h4>Panda bears are bears.</h4>
+                                <select class="chosen-select" id="q02">
+                                    <option value></option>
+                                    <option value="1">1 (Strongly Agree)</option>
+                                    <option value="2">2 (Agree)</option>
+                                    <option value="3">3 (Who Cares)</option>
+                                    <option value="4">4 (Disagree)</option>
+                                    <option value="5">5 (Strongly Disagree)</option>
+                                </select>
+
+                                <h3><strong>Question 3</strong></h3>
+                                <h4>Pauly Shore is underappreciated.</h4>
+                                <select class="chosen-select" id="q03">
+                                    <option value></option>
+                                    <option value="1">1 (Strongly Agree)</option>
+                                    <option value="2">2 (Agree)</option>
+                                    <option value="3">3 (Who Cares)</option>
+                                    <option value="4">4 (Disagree)</option>
+                                    <option value="5">5 (Strongly Disagree)</option>
+                                </select>
+
+                                <h3><strong>Question 4</strong></h3>
+                                <h4>Pets?  No way, I want my house clean.</h4>
+                                <select class="chosen-select" id="q04">
+                                    <option value></option>
+                                    <option value="1">1 (Strongly Agree)</option>
+                                    <option value="2">2 (Agree)</option>
+                                    <option value="3">3 (Who Cares)</option>
+                                    <option value="4">4 (Disagree)</option>
+                                    <option value="5">5 (Strongly Disagree)</option>
+                                </select>
+
+                                <h3><strong>Question 5</strong></h3>
+                                <h4>Pineapple belongs on pizza.</h4>
+                                <select class="chosen-select" id="q05">
+                                    <option value></option>
+                                    <option value="1">1 (Strongly Agree)</option>
+                                    <option value="2">2 (Agree)</option>
+                                    <option value="3">3 (Who Cares)</option>
+                                    <option value="4">4 (Disagree)</option>
+                                    <option value="5">5 (Strongly Disagree)</option>
+                                </select>
+
+                                <h3><strong>Question 6</strong></h3>
+                                <h4>OJ was innocent - the glove didn't fit!</h4>
+                                <select class="chosen-select" id="q06">
+                                    <option value></option>
+                                    <option value="1">1 (Strongly Agree)</option>
+                                    <option value="2">2 (Agree)</option>
+                                    <option value="3">3 (Who Cares)</option>
+                                    <option value="4">4 (Disagree)</option>
+                                    <option value="5">5 (Strongly Disagree)</option>
+                                </select>
+
+                                <h3><strong>Question 7</strong></h3>
+                                <h4>Diagonal cut sandwich > straight cut sandwich.</h4>
+                                <select class="chosen-select" id="q07">
+                                    <option value></option>
+                                    <option value="1">1 (Strongly Agree)</option>
+                                    <option value="2">2 (Agree)</option>
+                                    <option value="3">3 (Who Cares)</option>
+                                    <option value="4">4 (Disagree)</option>
+                                    <option value="5">5 (Strongly Disagree)</option>
+                                </select>
+
+                                <h3><strong>Question 8</strong></h3>
+                                <h4>Water is wet.</h4>
+                                <select class="chosen-select" id="q08">
+                                    <option value></option>
+                                    <option value="1">1 (Strongly Agree)</option>
+                                    <option value="2">2 (Agree)</option>
+                                    <option value="3">3 (Who Cares)</option>
+                                    <option value="4">4 (Disagree)</option>
+                                    <option value="5">5 (Strongly Disagree)</option>
+                                </select>
+
+                                <h3><strong>Question 9</strong></h3>
+                                <h4>God's America will win the Drug War!</h4>
+                                <select class="chosen-select" id="q09">
+                                    <option value></option>
+                                    <option value="1">1 (Strongly Agree)</option>
+                                    <option value="2">2 (Agree)</option>
+                                    <option value="3">3 (Who Cares)</option>
+                                    <option value="4">4 (Disagree)</option>
+                                    <option value="5">5 (Strongly Disagree)</option>
+                                </select>
+
+                                <h3><strong>Question 10</strong></h3>
+                                <h4>I'm just taking this survey to get laid.</h4>
+                                <select class="chosen-select" id="q10">
+                                    <option value></option>
+                                    <option value="1">1 (Strongly Agree)</option>
+                                    <option value="2">2 (Agree)</option>
+                                    <option value="3">3 (Who Cares)</option>
+                                    <option value="4">4 (Disagree)</option>
+                                    <option value="5">5 (Strongly Disagree)</option>
+                                </select>
+
                             </form>
                             <br>
                             <!-- Submit Survey Button-->
@@ -59,6 +159,52 @@
                     </div><!-- /panel-->
                 </div><!-- /col-lg-12-->
             </div><!-- /row-->
+            <footer class="footer">
+                <div class="container">
+                    <p><a href="/api/friends">API Friends Link</a></p>
+                </div>
+            </footer>
         </div><!-- /container-->
+        <script type="text/javascript">
+            $("#submit-btn").on("click", function(event) {
+
+                function validateSurvey () {
+                    var isValid = true;
+                    $(".form-control").each(function(){
+                        if ($(this).val() === "") {
+                            isValid = false;
+                        }
+                    });
+                    $(".chosen-select").each(function(){
+                        if ($(this).val() === "") {
+                            isValid = false;
+                        }
+                    });
+                    return isValid;
+                }
+
+                var newFriend = {
+                    name: $("#name").val().trim(),
+                    photo: $("#photo").val().trim(),
+                    scores: [
+                    $("#q01").val().trim(),
+                    $("#q02").val().trim(),
+                    $("#q03").val().trim(),
+                    $("#q04").val().trim(),
+                    $("#q05").val().trim(),
+                    $("#q06").val().trim(),
+                    $("#q07").val().trim(),
+                    $("#q08").val().trim(),
+                    $("#q09").val().trim(),
+                    $("#q10").val().trim()
+                    ]
+                };
+
+                $.post("/api/friends", newFriend)
+                    .then(function(data) {
+                    // show the name and photo of best match
+                });
+            });
+    </script>
     </body>
 </html>
