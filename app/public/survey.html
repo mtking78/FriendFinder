@@ -12,7 +12,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
     </head>
-    <body style="background-image: url('images/sakura.png')">
+    <body style="background-image: href('/images/sakura.png')">
         <div class="container">
             <div class="jumbotron"  style="background-color: #eb7391; font-family: 'Courgette', cursive; color: #fff; border: 5px solid #fff;">
                 <h1>Share yourself!</h1>
@@ -231,86 +231,25 @@
                     // Get the location of the root page.
                     var currentURL = window.location.origin;
 
+                    // Send the new survey...
                     $.post(currentURL + "/api/friends", newFriend)
-                        .then(function(data) {
-                            // Clear the form when submitting
-                            $(".form-control").val("");
-                            $(".chosen-select").val("");
-                    });
 
-                    // The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
-                    $.ajax({url: currentURL + "/api/friends", method: "GET"}).done(function(res) {
-                        // // Here we are logging the URL so we have access to it for troubleshooting
-                        // console.log("------------------------------------");
-                        // console.log("URL: " + currentURL + "/api/friends");
-                        // console.log("------------------------------------");
-                        // // Here we then log the data to console, where it will show up as an object.
-                        // console.log(res);
-                        // console.log("------------------------------------")
-
-                        var bestMatch;
-                        var surveyDifference = [];
-                        var varianceArray = [];
-
-                        // Loop through each of the surveys other than the current one from the user
-                        for (var i = 0; i < res.length - 1; i++) {
-                            // Loop through the scores from each survey from parent loop
-                            for (var j = 0; j < 10; j++) {
-                                var questionDifference = newFriend.scores[j] - res[i].scores[j];
-                                surveyDifference.push(Math.abs(questionDifference));
-                            }
-
-                            // Get the sum of question differences for each survey to survey comparison
-                            var totalDifference = surveyDifference.reduce(getSum);
-                            console.log("surveyDifference: " + surveyDifference);
-                            console.log("totalDifference: " + totalDifference);
-
-                            // Store the sum of question differences as a variable
-                            surveyDifference = [];
-                            // Store all the sums in a new array to be used for the best match search
-                            varianceArray.push(totalDifference);
-                            console.log(varianceArray);
-
-                            // Find the minimum sum of differences
-                            function indexOfMinimum(varianceArray) {
-                                if (varianceArray === 0) {
-                                    return -1;
-                                }
-                                var min = varianceArray[0];
-                                var minIndex = 0;
-
-                                for (var i = 1; i < varianceArray.length; i++) {
-                                    if (varianceArray[i] < min) {
-                                        minIndex = i;
-                                        min = varianceArray[i];
-                                    }
-                                }
-
-                                // The index of the minimum sum of differences will be matched to the name of the user.
-                                console.log("minIndex: " + minIndex);
-                                console.log(res[parseInt(minIndex)].name);
-                                bestMatchName = res[parseInt(minIndex)].name;
-                                console.log("bestMatchName: " + bestMatchName);
-                                bestMatchPhoto = res[parseInt(minIndex)].photo;
-                                bestMatchQuote = res[parseInt(minIndex)].quote;
-                            }
-                        }
-                        // Call the function after comparing all surveys, when varianceArray has been filled.
-                        indexOfMinimum(varianceArray);
-
-                        // Send results to modal to show to user.
-                        var bestMatchPic = '<img width="300px" src=' + bestMatchPhoto + '>';
-                        $(".modal-title").html(bestMatchName);
-                        $(".modal-body").html(bestMatchPic + "<br>" + "<h3><i>" + '"' + bestMatchQuote + '"' + "</i></h3>");
+                    // ... get back its "best match" to show user.
+                    .then(function(data) {
+                        //console.log(data);
+                        var bestMatchPic = '<img width="300px" src=' + data.photo + '>';
+                        $(".modal-title").html(data.name);
+                        $(".modal-body").html(bestMatchPic + "<br>" + "<h3><i>" + '"' + data.quote + '"' + "</i></h3>");
                         $("#matchModal").modal("show");
-                    });
+                    })
+
+                    // Clear the form when submitting
+                    $(".form-control").val("");
+                    $(".chosen-select").val("");
 
                 } else {
                     alert("Not so fast, Romeo. Fill in the whole survey.");
                 };
-            function getSum(total, num) {
-                return total + num;
-            };
             });
         </script>
     </body>
